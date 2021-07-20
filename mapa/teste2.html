@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Add a default marker</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="key.js"></script>
+
+    <style>
+        body {
+            margin: auto;
+            padding: 0;
+        }
+        
+        #map {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+</head>
+
+<body>
+
+    <div id="map" style='width: 800px; height: 500px;'></div>
+    <div id="cord" style='width: 100px; height: 100px; '></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYnJlbm9jYXJkb3NvMTIiLCJhIjoiY2ticDVkNzJqMjl5YTJvcW5xM20wZzRrOCJ9.CVhNx0lq6pqSVBqs5tz4NQ';
+
+        var lat = -16.156961,
+            lng = -42.308401;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: 13
+        });
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+
+            })
+        );
+        map.addControl(new mapboxgl.NavigationControl());
+
+
+
+        for (let index = 1; index < 5; index++) {
+            var marker = new mapboxgl.Marker({
+                    color: 'red'
+                })
+                .setLngLat([lng, lat])
+                .addTo(map);
+            lat += 0.0003;
+            lng += 0.0003;
+            console.log(lat, lng)
+        }
+        map.on('click', function(e) {
+            console.log('A click event has occurred at ' + e.lngLat);
+            let {
+                lng: lngClick,
+                lat: latClick
+            } = e.lngLat;
+            document.getElementById("cord").innerHTML = `Lat: ${latClick} </br> Lng: ${lngClick}`;
+
+            console.log(lngClick, latClick)
+        });
+    </script>
+
+</body>
+
+</html>

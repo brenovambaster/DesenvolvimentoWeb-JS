@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Add an icon to the map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYnJlbm9jYXJkb3NvMTIiLCJhIjoiY2ticDVkNzJqMjl5YTJvcW5xM20wZzRrOCJ9.CVhNx0lq6pqSVBqs5tz4NQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v10'
+        });
+
+        map.on('load', function() {
+            map.loadImage(
+                "https://img.icons8.com/emoji/70/000000/deciduous-tree-emoji.png",
+                function(error, image) {
+                    if (error) throw error;
+                    map.addImage('tree', image);
+                    map.addSource('point', {
+                        'type': 'geojson',
+                        'data': json
+                    });
+                    map.addLayer({
+                        'id': 'points',
+                        'type': 'symbol',
+                        'source': 'point',
+                        'layout': {
+                            'icon-image': 'tree',
+                            'icon-size': 0.25
+                        }
+                    });
+                }
+            );
+        });
+    </script>
+
+</body>
+
+</html>

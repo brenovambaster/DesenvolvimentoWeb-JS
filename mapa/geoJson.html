@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Draw GeoJSON points</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map" style="width:100%; height: 500px;"></div>
+    <div id="cords" style="width: 100px; height: 100px;"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYnJlbm9jYXJkb3NvMTIiLCJhIjoiY2ticDVkNzJqMjl5YTJvcW5xM20wZzRrOCJ9.CVhNx0lq6pqSVBqs5tz4NQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-42.2897516, -16.1636076],
+            zoom: 4
+        });
+
+        let arrayBD = {
+            // gazer o geoJeson nesse formato para criar as marcações no map; Desse jeito, não é criado como um marker; Acho que seria
+            // melhor criar como marker
+
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        0,
+                        0
+                    ]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-42.2923, -16.1681]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-42.2907, -16.1569]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        8,
+                        8
+                    ]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-42.2923, -16.1681]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        5,
+                        4
+                    ]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-95.644, -15.2655]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-95.644, -15.2655]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-95.644, -15.2655]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-95.644, -15.2655]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-42.289, -16.1569]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-42.2863, -16.1569]
+                },
+                "properties": {
+                    "title": "",
+                    "icon": "park"
+                }
+            }]
+        };
+        map.on('load', function() {
+            map.addSource('points', {
+                'type': 'geojson',
+                'data': arrayBD
+            });
+            var marker = new mapboxgl.Marker()
+                .setLngLat([-42.2907, -16.1569])
+                .addTo(map);
+
+
+
+
+            map.addLayer({
+                'id': 'points',
+                'type': 'symbol',
+                'source': 'points',
+                'layout': {
+                    // get the icon name from the source's "icon" property
+                    // concatenate the name to get an icon from the style's sprite sheet
+                    'icon-image': ['concat', ['get', 'icon'], '-15'],
+                    // get the title name from the source's "title" property
+                    'text-field': ['get', 'title'],
+                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                    'text-offset': [0, 0.6],
+                    'text-anchor': 'top'
+                }
+            });
+        });
+
+        map.on('click', function(e) {
+            console.log('A click event has occurred at ' + e.lngLat);
+            let {
+                lng: lngClick,
+                lat: latClick
+            } = e.lngLat;
+            document.getElementById("cords").innerHTML = ` Lat: ${latClick} </br> Lng: ${lngClick} `;
+
+
+            console.log(lngClick, latClick)
+        });
+    </script>
+
+</body>
+
+</html>
