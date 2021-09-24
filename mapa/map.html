@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="key.js"></script>
+
+    <title>Map!</title>
+
+</head>
+
+<body>
+
+
+    <div id='map' style='width: 800px; height: 500px;'></div>
+    <div id='cords' style='width: 40px; height: 30px;'></div>
+    <script>
+        let lat = -16.157,
+            lng = -42.3088;
+        mapboxgl.accessToken = `${key()}`;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+            center: [lng, lat], // starting position [lng, lat]
+            zoom: 14 // starting zoom
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+        // Quando clicar, ele pega a cord 
+        map.on('click', function(e) {
+            console.log('A click event has occurred at ' + e.lngLat);
+            let {
+                lng: lngClick,
+                lat: latClick
+            } = e.lngLat;
+            document.getElementById("cords").innerHTML = ` Lat: ${latClick} </br> Lng: ${lngClick} `;
+
+
+            console.log(lngClick, latClick)
+        });
+
+
+
+        var marker = new mapboxgl.Marker({
+                color: 'green'
+            })
+            .setLngLat([lat, lng])
+            .setPopup(popup)
+            .addTo(map);
+        var marker = new mapboxgl.Marker({
+                color: 'green'
+            })
+            .setLngLat([lat + 0.002, lng + 0.002])
+            .setPopup(popup)
+            .addTo(map);
+        var popup = new mapboxgl.Popup({
+                closeButton: true,
+                closeOnClick: true,
+                closeOnMove: true,
+                isOpen: false
+
+            })
+            .setLngLat([lat, lng])
+            .setHTML("Name: <i> Rutacea  paniculata</i></br> ID: 12")
+            .setMaxWidth('300px')
+            .addTo(map)
+    </script>
+
+
+
+</body>
+
+</html>
