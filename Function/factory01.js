@@ -17,7 +17,7 @@ const prod1 = {
 }
 console.log(prod1._name2())
 
-// function factory
+// function factory retorna um objeto com funções
 function criarProd(name2 = 'indefinido', price2 = 1, amount2 = 1) {
     return prod2 = {
         /* ou assim  
