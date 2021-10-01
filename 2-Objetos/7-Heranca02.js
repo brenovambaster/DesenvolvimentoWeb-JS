@@ -44,8 +44,11 @@ const volvo = {
     }
 }
 
+//Relação de protótipos entre objetos
 Object.setPrototypeOf(ferrai, carro)
 Object.setPrototypeOf(volvo, carro)
+
+
 console.log(volvo.status())
 volvo.acelerarMais(2)
 console.log(volvo.status())
