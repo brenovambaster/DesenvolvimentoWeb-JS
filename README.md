@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-Um repositório cridado para estudar desenvolvimento Web moderno, utilizando as principais tecnologias do mercado 
+Repositório cridado para estudar desenvolvimento Web moderno, utilizando as principais tecnologias do mercado 
 </p>
 
 <p align="center">
