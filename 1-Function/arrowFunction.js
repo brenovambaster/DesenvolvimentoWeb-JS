@@ -1,16 +1,17 @@
-let dobro = function(a) {
+let dobro = function (a) {
     return a * a
 }
 
 console.log(dobro(2))
 
-// arrow
+// ^ arrow
 dobro = (a) => { return a * a }
-    // retorno implicito, sem parenteses para apenas 1 parms
+
+// ^ retorno implicito, sem parenteses para apenas 1 parms
 dobro = a => a * a
 
 
-let ola = function() {
+let ola = function () {
     return "olaaaa"
 }
 

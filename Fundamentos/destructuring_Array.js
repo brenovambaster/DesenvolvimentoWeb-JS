@@ -1,7 +1,7 @@
 // * CRIANDO UM ARRAY
 var b = [2, 3, , 64];
 console.log(b)
-    // ---------------
+// ---------------
 
 // OPERADOR DESTRUCTURING
 const [a] = [10]
