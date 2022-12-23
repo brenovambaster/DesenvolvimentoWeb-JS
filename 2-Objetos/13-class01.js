@@ -19,7 +19,7 @@ class ciclofinanceiro {
          *  this.lacamentos(que é um array) 
          * this.lancamentos é o  atributo array da classe ciclofinanceiro (this.ano, this.mes, this.lacamentso) 
          */
-        lancamentos.forEach(l => this.lancamentos.push(l))
+        lancamentos.forEach(value => this.lancamentos.push(value))
     }
 
     sumario() {

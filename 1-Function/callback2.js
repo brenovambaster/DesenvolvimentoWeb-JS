@@ -1,15 +1,19 @@
 // sem callback
 const notas = [2, 4, 5, 8, 4, 2, 7, 8, 1]
-let notasB = []
+
+let notasMenores7 = []
 for (let i in notas) {
     if (notas[i] < 7)
-        notasB.push(notas[i])
+        notasMenores7.push(notas[i])
 }
-console.log(notasB)
+console.log(notasMenores7)
 
 
 // com callback
-notasB = notas.filter(nota => { return nota < 7 })
-notasB2 = notas.filter(function(nota) { return nota < 7 })
-
-console.log(notasB)
+notasMenores7 = notas.filter(nota => { return nota < 7 })
+/*
+^ outra maneira seria: 
+* notasMenores7 = notas.filter(nota => nota < 7)
+* notasMenores7 = notas.filter(function (nota) { return nota < 7 })
+*/
+console.log(notasMenores7)

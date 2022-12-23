@@ -5,8 +5,8 @@ const carrinho = [
     '{"nome":"Caneta", "preco":1.35}'
 ]
 
-let convertJson = element => JSON.parse(element);
-let extraiPreco = element => { return element.preco }
+let convertJson = element => JSON.parse(element); // ~ gera cada elemento do array em objeto.
+let extraiPreco = element => { return element.preco } // ~ extrai de cada elemento (que é um objto) o valor da chave ´preco´ 
 let resul = carrinho.map(convertJson).map(extraiPreco)
 console.log(resul);
 /*
