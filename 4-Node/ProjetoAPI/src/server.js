@@ -1,7 +1,8 @@
 const port = 3003;
 const express = require('express');
 const bd = require('./bd');
-const bodyParser = require('body-parser');
+
+const bodyParser = require('body-parser'); //^ fazer o parser e não causar erro
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
