@@ -1,3 +1,8 @@
+/**
+ * @param {int} segundos - Tempo a ser esperado
+ * @param {string} frase - Frase que retornará 
+ * @returns  Promise()
+ */
 function falarDepoisde(segundos, frase) {
 
     return new Promise((resolve, reject) => {
