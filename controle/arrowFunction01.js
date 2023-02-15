@@ -1,4 +1,4 @@
-let dobro = function(a) {
+let dobro = function (a) {
     return 2 * a
 }
 dobro = a => { return 2 * a } //ou 
@@ -6,7 +6,7 @@ let dobro2 = (a) => { return 2 * a } //ou
 dobro2 = a => 2 * a; // retorno implicito
 
 
-let ola = function() {
+let ola = function () {
     return 'HEEI'
 }
 
